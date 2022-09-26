@@ -4,7 +4,7 @@ public inherited sharing class LogManager {
       return Database.query('SELECT ' + fields + ' FROM Log__c WHERE Id IN :ids');
   }
 
-   public Log__c createLog(String name, String message, String type, Boolean serialize){
+   public static Log__c createLog(String name, String message, String type, Boolean serialize){
        Log__c log = new Log__c();
        log.Name = name;
        log.Message__c = message;
