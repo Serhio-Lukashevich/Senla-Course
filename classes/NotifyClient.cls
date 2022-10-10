@@ -18,7 +18,7 @@ public class NotifyClient implements Database.Batchable<sObject>{
                    EventBus.publish(e);
                    SendEmailToClient.sendEmail(dl);
                    e.DealId__c = dl.Id;                   
-                   e.Info__c = infoJSON.makeJSON(dl);
+                   e.Info__c = makeJSON(dl);
                   
                }
            }
