@@ -8,7 +8,7 @@ public class NotifyClient implements Database.Batchable<sObject>{
   }
 
    public void execute(Database.BatchableContext bc, List<Deal__c> deals){
-       List<Deal__c> dlList = [SELECT Id, Start_Of_The_Lease, End_Start_Of_The_Lease__c, Buyer_Contact__c FROM Deal__c
+       List<Deal__c> dlList = [SELECT Id, Start_Of_The_Lease__c, End_Start_Of_The_Lease__c, Buyer_Contact__c FROM Deal__c
                                WHERE RecordTypeId = '00h5i0000066HM6AAM'
                 	       AND End_Of_The_Lease__c = TOMORROW];
        
