@@ -12,9 +12,9 @@ public class NotifyClient implements Database.Batchable<sObject>{
                                WHERE RecordTypeId = '00h5i0000066HM6AAM'
                    AND End_Of_The_Lease__c = TOMORROW];
        
-           if(dlList.size() > 0) {
-               for (Deal__c dl : dlList) {
-                   NotifyClientRentEnding__e e = new NotifyClientRentEnding__e();
+          NotifyClientRentEnding__e e = new NotifyClientRentEnding__e();
+	   if(dlList.size() > 0) {
+               for (Deal__c dl : dlList) { 
                    EventBus.publish(e);
                    SendEmailToClient.sendEmail(dl);
                    e.DealId__c = dl.Id;                   
