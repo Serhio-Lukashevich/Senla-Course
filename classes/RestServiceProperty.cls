@@ -43,7 +43,7 @@ global class RestServiceProperty {
     
     
     private static String getDealsByTypesAndPeriod(String propertyId, String startDate, String endDate, String dealType) {
-        String fields = 'Id, RecordType.DeveloperName'
+       String fields = 'Id, RecordType.DeveloperName'
                         + ', Broker__r.Id'
                         + ', Start_Of_The_Lease__c'
                         + ', End_Of_The_Lease__c'
