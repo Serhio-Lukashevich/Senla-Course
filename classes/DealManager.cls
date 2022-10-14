@@ -76,4 +76,9 @@ public inherited sharing class DealManager {
         AND RecordTypeId = :SALE_RECORD_TYPE_ID
         ];
     }
+
+    public static List<Deal__c> getDealsByPeriodAndProperty(Id property, Date startDate, Date endDate, String recordType, String fields) {
+        return Database.query('SELECT ' + fields + ' FROM Deal__c WHERE Property__c = :property AND Start_Of_The_lease__c = :startDate' +
+                                                                        ' AND End_Of_The_Lease__c = :endDate AND RecordType.DeveloperName = :recordType');
+    }
 }
