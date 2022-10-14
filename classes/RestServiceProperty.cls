@@ -62,7 +62,7 @@ global class RestServiceProperty {
     
     
     private static String getPropertiesByOwner(Id ownerId) {
-        String fields = 'Id, Owner_Contact__c, Price__c, Rent_Price__c, Location_Wrapper__r.Id,' +
+        String fields = 'Id, Owner_Contact__c, Price__c, Rental_Price__c, Location_Wrapper__r.Id,' +
                         'Location_Wrapper__r.Country__c, Location_Wrapper__r.City__c, Location_Wrapper__r.Address__c';
         List<Property__c> properties = PropertyManager.getPropertiesByOwners(new List<Id>{ownerId}, fields);
         List<PropertyManager.PropertyWrapper> props = new List<PropertyManager.PropertyWrapper>();
