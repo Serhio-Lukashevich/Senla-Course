@@ -69,4 +69,3 @@ global class PropertyRestService {
         }
         return JSON.serialize(props, true);
     }
-}
