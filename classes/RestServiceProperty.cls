@@ -1,5 +1,5 @@
 @RestResource(urlMapping='/propery/v1/*')
-global class PropertyRestService {
+global class RestServiceProperty {
     @HttpGet
     global static String getProperty() {
         String response;
