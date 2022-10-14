@@ -41,8 +41,8 @@ public LocationWrapper(String city, String country, String address, String latit
 public static Property__c createProperty(PropertyWrapper wrapper, Boolean serialize) {
 Property__c property = new Property__c();
 property.Price__c = wrapper.priceSold;
-property.Rental_Price_Rental__c = wrapper.rentalPrice;
-property.Property_Owner__c = wrapper.owner;
+property.Rental_Price__c = wrapper.rentalPrice;
+property.Owner_Contact__c = wrapper.owner;
 property.Location_Wrapper__c = wrapper.location.Id;
 
 if (serialize) insert property;
