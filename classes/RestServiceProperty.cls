@@ -1,5 +1,5 @@
 @RestResource(urlMapping='/propery/v1/*')
-global class PropertyRestService {
+global class RestServiceProperty {
     @HttpGet
     global static String getProperty() {
         String response;
@@ -28,7 +28,7 @@ global class PropertyRestService {
     
     @HttpPut
     global static String upsertPropertyOwner() {
-        SerializationWrappers.UpdatePropertyOwnerPUTWrapper wrapPut = (SerializationWrappers.UpdatePropertyOwnerPUTWrapper)
+        WrappersJSON.UpdatePropertyOwnerPUTWrapper wrapPut = (WrappersJSON.UpdatePropertyOwnerPUTWrapper)
                                                                       JSON.deserialize(RestContext.request.requestBody.toString(),
                                                                       WrappersJSON.UpdatePropertyOwnerPUTWrapper.class);
         Id ownerID = [SELECT Owner__c FROM Property__c WHERE Id = :wrapPut.propertyId].Owner__c;
