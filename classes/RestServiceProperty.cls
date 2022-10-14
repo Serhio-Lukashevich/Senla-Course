@@ -24,12 +24,13 @@ global class PropertyRestService {
                                                   JSON.deserialize(RestContext.request.requestBody.toString(), PropertyManager.PropertyWrapper.class); 
         return PropertyManager.createProperty(wrapper, true);
     }
-
+    
+    
     @HttpPut
     global static String upsertPropertyOwner() {
         SerializationWrappers.UpdatePropertyOwnerPUTWrapper wrapPut = (SerializationWrappers.UpdatePropertyOwnerPUTWrapper)
                                                                       JSON.deserialize(RestContext.request.requestBody.toString(),
-                                                                      SerializationWrappers.UpdatePropertyOwnerPUTWrapper.class);
+                                                                      WrappersJSON.UpdatePropertyOwnerPUTWrapper.class);
         Id ownerID = [SELECT Owner__c FROM Property__c WHERE Id = :wrapPut.propertyId].Owner__c;
              Contact owner = [SELECT Id, FirstName, LastName, Email FROM Contact WHERE Id =:ownerID LIMIT 1];
                 owner.Id = String.isNotEmpty(wrapPut.newOwner.sfId) ? wrapPut.newOwner.sfId : owner.Id;
@@ -39,7 +40,8 @@ global class PropertyRestService {
         upsert owner;
         return JSON.serialize(owner);
     }
-
+    
+    
     private static String getDealsByTypesAndPeriod(String propertyId, String startDate, String endDate, String dealType) {
         String fields = 'Id, RecordType.DeveloperName'
                         + ', Broker__r.Id'
@@ -54,10 +56,11 @@ global class PropertyRestService {
             Date startPeriod = Date.valueOf(startDate);
             Date endPeriod = Date.valueOf(endDate);
             List<Deal__c> deals = DealManager.getDealsByPeriodAndProperty(propertyId, startPeriod, endPeriod, dealType, fields);
-            SerializationWrappers.Response response = new SerializationWrappers.Response(startPeriod, endPeriod, deals);
+            WrappersJSON.Response response = new WrappersJSON.Response(startPeriod, endPeriod, deals);
         return JSON.serialize(response, true);
     }
-
+    
+    
     private static String getPropertiesByOwner(Id ownerId) {
         String fields = 'Id, Owner_Contact__c, Price__c, Rent_Price__c, Location_Wrapper__r.Id,' +
                         'Location_Wrapper__r.Country__c, Location_Wrapper__r.City__c, Location_Wrapper__r.Address__c';
